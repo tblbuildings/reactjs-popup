@@ -53,4 +53,9 @@ export interface PopupProps {
   className?: string;
   keepTooltipInside?: boolean | string;
   disableFocusContentOnOpen?: boolean;
+  /**
+   * If passed - position will be calculated relatively to that root
+   * Also Popup itself will be placed inside of that root
+   */
+  rootId?: string;
 }

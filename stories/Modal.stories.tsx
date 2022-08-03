@@ -100,17 +100,42 @@ MultipleModalAccessibility.args = {
 const NestedModalTemplate: Story<PopupProps> = args => (
   <Center>
     <Popup {...args} nested>
-      Popup content Here
-      <Popup {...args} nested>
-        this a tooltip
-        <Popup {...args} modal={false}>
-          tooltip content
+      <div id="customId" style={{ maxHeight: 200, overflow: 'auto' }}>
+        <Popup
+          trigger={<Button>Menu</Button>}
+          on="click"
+          contentStyle={{ padding: '0px', border: 'none' }}
+          arrow={false}
+          rootId="customId"
+        >
+          <div className="menu">
+            <div className="menu-item"> item 1</div>
+            <div className="menu-item"> item 2</div>
+            <div className="menu-item"> item 3</div>
+            <div className="menu-item"> item 3</div>
+            <div className="menu-item"> item 3</div>
+            <div className="menu-item"> item 3</div>
+            <div className="menu-item"> item 3</div>
+          </div>
         </Popup>
-      </Popup>
-      Popup content Here Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Ut commodi veniam sint maiores, quas ullam labore doloribus quia
-      numquam excepturi corporis ad aut adipisci voluptate ea aperiam
-      voluptatum, deleniti est.
+        Popup content Here Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Ut commodi veniam sint maiores, quas ullam labore doloribus quia
+        numquam excepturi corporis ad aut adipisci voluptate ea aperiam
+        voluptatum, deleniti est. Popup content Here Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Ut commodi veniam sint maiores, quas ullam
+        labore doloribus quia numquam excepturi corporis ad aut adipisci
+        voluptate ea aperiam voluptatum, deleniti est. Popup content Here Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Ut commodi veniam
+        sint maiores, quas ullam labore doloribus quia numquam excepturi
+        corporis ad aut adipisci voluptate ea aperiam voluptatum, deleniti est.
+        Popup content Here Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Ut commodi veniam sint maiores, quas ullam labore doloribus quia
+        numquam excepturi corporis ad aut adipisci voluptate ea aperiam
+        voluptatum, deleniti est. Popup content Here Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Ut commodi veniam sint maiores, quas ullam
+        labore doloribus quia numquam excepturi corporis ad aut adipisci
+        voluptate ea aperiam voluptatum, deleniti est.
+      </div>
     </Popup>
   </Center>
 );

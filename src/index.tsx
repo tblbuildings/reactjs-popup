@@ -22,12 +22,13 @@ import calculatePosition from './Utils';
 
 let popupIdCounter = 0;
 
-const getRootPopup = () => {
-  let PopupRoot = document.getElementById('popup-root');
+const getRootPopup = (rootId: string | undefined) => {
+  const id = rootId || 'popup-root';
+  let PopupRoot = document.getElementById(id);
 
   if (PopupRoot === null) {
     PopupRoot = document.createElement('div');
-    PopupRoot.setAttribute('id', 'popup-root');
+    PopupRoot.setAttribute('id', id);
     document.body.appendChild(PopupRoot);
   }
 
@@ -62,6 +63,7 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
       mouseLeaveDelay = 100,
       keepTooltipInside = false,
       disableFocusContentOnOpen = false,
+      rootId,
       children,
     },
     ref
@@ -185,8 +187,25 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
         },
         keepTooltipInside
       );
-      contentRef.current.style.top = `${cords.top + window.scrollY}px`;
-      contentRef.current.style.left = `${cords.left + window.scrollX}px`;
+
+      const rootElement = rootId ? document.getElementById(rootId) : null;
+      const rootRect = rootElement?.getBoundingClientRect();
+
+      let { yScroll, xScroll } = rootId
+        ? {
+            yScroll: rootElement?.scrollTop ?? 0,
+            xScroll: rootElement?.scrollLeft ?? 0,
+          }
+        : { yScroll: window.scrollY, xScroll: window.scrollX };
+
+      contentRef.current.style.top = `${cords.top +
+        yScroll -
+        (rootRect?.y ?? 0)}px`;
+
+      contentRef.current.style.left = `${cords.left +
+        xScroll -
+        (rootRect?.x ?? 0)}px`;
+
       if (arrow && !!arrowRef.current) {
         arrowRef.current.style.transform = cords.transform;
         arrowRef.current.style.setProperty('-ms-transform', cords.transform);
@@ -349,7 +368,7 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
     return (
       <>
         {renderTrigger()}
-        {isOpen && ReactDOM.createPortal(content, getRootPopup())}
+        {isOpen && ReactDOM.createPortal(content, getRootPopup(rootId))}
       </>
     );
   }
