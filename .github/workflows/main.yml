@@ -46,7 +46,7 @@ jobs:
       - name: Prepare for deploy
         run: |
           mkdir -p output
-          mv dist output/*
+          mv dist output/dist
           mv package.json output/package.json
           mv LICENSE output/LICENSE
           mv README.md output/README.md
