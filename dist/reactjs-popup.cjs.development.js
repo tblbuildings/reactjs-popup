@@ -329,12 +329,13 @@ var calculatePosition = function calculatePosition(triggerBounding, ContentBound
 
 var popupIdCounter = 0;
 
-var getRootPopup = function getRootPopup() {
-  var PopupRoot = document.getElementById('popup-root');
+var getRootPopup = function getRootPopup(rootId) {
+  var id = rootId || 'popup-root';
+  var PopupRoot = document.getElementById(id);
 
   if (PopupRoot === null) {
     PopupRoot = document.createElement('div');
-    PopupRoot.setAttribute('id', 'popup-root');
+    PopupRoot.setAttribute('id', id);
     document.body.appendChild(PopupRoot);
   }
 
@@ -392,6 +393,7 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
       keepTooltipInside = _ref$keepTooltipInsid === void 0 ? false : _ref$keepTooltipInsid,
       _ref$disableFocusCont = _ref.disableFocusContentOnOpen,
       disableFocusContentOnOpen = _ref$disableFocusCont === void 0 ? false : _ref$disableFocusCont,
+      rootId = _ref.rootId,
       children = _ref.children;
 
   var _useState = React.useState(open || defaultOpen),
@@ -505,6 +507,8 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
   }); // set Position
 
   var setPosition = function setPosition() {
+    var _rootElement$scrollTo, _rootElement$scrollLe, _rootRect$y, _rootRect$x;
+
     if (isModal || !isOpen) return;
     if (!(triggerRef === null || triggerRef === void 0 ? void 0 : triggerRef.current) || !(triggerRef === null || triggerRef === void 0 ? void 0 : triggerRef.current) || !(contentRef === null || contentRef === void 0 ? void 0 : contentRef.current)) return; /// show error as one of ref is undefined
 
@@ -514,8 +518,21 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
       offsetX: offsetX,
       offsetY: offsetY
     }, keepTooltipInside);
-    contentRef.current.style.top = cords.top + window.scrollY + "px";
-    contentRef.current.style.left = cords.left + window.scrollX + "px";
+    var rootElement = rootId ? document.getElementById(rootId) : null;
+    var rootRect = rootElement === null || rootElement === void 0 ? void 0 : rootElement.getBoundingClientRect();
+
+    var _ref2 = rootId ? {
+      yScroll: (_rootElement$scrollTo = rootElement === null || rootElement === void 0 ? void 0 : rootElement.scrollTop) !== null && _rootElement$scrollTo !== void 0 ? _rootElement$scrollTo : 0,
+      xScroll: (_rootElement$scrollLe = rootElement === null || rootElement === void 0 ? void 0 : rootElement.scrollLeft) !== null && _rootElement$scrollLe !== void 0 ? _rootElement$scrollLe : 0
+    } : {
+      yScroll: window.scrollY,
+      xScroll: window.scrollX
+    },
+        yScroll = _ref2.yScroll,
+        xScroll = _ref2.xScroll;
+
+    contentRef.current.style.top = cords.top + yScroll - ((_rootRect$y = rootRect === null || rootRect === void 0 ? void 0 : rootRect.y) !== null && _rootRect$y !== void 0 ? _rootRect$y : 0) + "px";
+    contentRef.current.style.left = cords.left + xScroll - ((_rootRect$x = rootRect === null || rootRect === void 0 ? void 0 : rootRect.x) !== null && _rootRect$x !== void 0 ? _rootRect$x : 0) + "px";
 
     if (arrow && !!arrowRef.current) {
       var _arrowStyle$top, _arrowStyle$left;
@@ -635,7 +652,7 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
     onClick: closeOnDocumentClick && nested ? closePopup : undefined,
     tabIndex: -1
   }, isModal && renderContent()), !isModal && renderContent()];
-  return React__default.createElement(React__default.Fragment, null, renderTrigger(), isOpen && ReactDOM.createPortal(content, getRootPopup()));
+  return React__default.createElement(React__default.Fragment, null, renderTrigger(), isOpen && ReactDOM.createPortal(content, getRootPopup(rootId)));
 });
 
 exports.Popup = Popup;
