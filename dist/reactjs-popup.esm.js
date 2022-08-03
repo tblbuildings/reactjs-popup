@@ -383,6 +383,8 @@ var Popup = /*#__PURE__*/forwardRef(function (_ref, ref) {
       mouseLeaveDelay = _ref$mouseLeaveDelay === void 0 ? 100 : _ref$mouseLeaveDelay,
       _ref$keepTooltipInsid = _ref.keepTooltipInside,
       keepTooltipInside = _ref$keepTooltipInsid === void 0 ? false : _ref$keepTooltipInsid,
+      _ref$disableFocusCont = _ref.disableFocusContentOnOpen,
+      disableFocusContentOnOpen = _ref$disableFocusCont === void 0 ? false : _ref$disableFocusCont,
       children = _ref.children;
 
   var _useState = useState(open || defaultOpen),
@@ -471,6 +473,10 @@ var Popup = /*#__PURE__*/forwardRef(function (_ref, ref) {
 
   var focusContentOnOpen = function focusContentOnOpen() {
     var _contentRef$current;
+
+    if (disableFocusContentOnOpen) {
+      return;
+    }
 
     var focusableEls = contentRef === null || contentRef === void 0 ? void 0 : (_contentRef$current = contentRef.current) === null || _contentRef$current === void 0 ? void 0 : _contentRef$current.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
     var firstEl = Array.prototype.slice.call(focusableEls)[0];
