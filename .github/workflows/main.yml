@@ -42,8 +42,14 @@ jobs:
         run: npm run build
         env:
           CI: true
+      
+      - name: SETUP_TOKEN
+        run: |
+          echo @tblbuildings:https://npm.pkg.github.com/ > .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> .npmrc
 
       - name: Publish
         run: npm publish
         env:
           CI: true
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
