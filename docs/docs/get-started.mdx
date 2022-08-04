@@ -1,0 +1,102 @@
+---
+id: getting-started
+slug: getting-started
+hide_title: true
+sidebar_label: Installation
+title: Getting Started
+description: A Simple React popup component. Use it as a tooltip, modal, sub-menu and match more ...
+---
+
+## Installing / Getting started
+
+This package is available from the NPM repository as `reactjs-popup`. It will work correctly with all popular bundlers.
+
+```bash
+npm install reactjs-popup --save
+```
+
+Using yarn
+
+```bash
+yarn add reactjs-popup
+```
+
+## Include the component
+
+To start using `reactjs-popup` you just need to import the component from the package.
+
+```jsx
+import React from 'react';
+import Popup from 'reactjs-popup';
+
+const PopupExample = () => (
+  <Popup trigger={<button> Trigger</button>} position="right center">
+    <div>Popup content here !!</div>
+  </Popup>
+);
+```
+
+:::important
+
+Starting from v2, you need to import the default styling for modals and tooltips.
+
+The default styling is optional and we are using it to make prototyping with `reactjs-popup` easier.
+
+If you are planning to create your own CSS for modals and tooltips, which is often the case, you don't need to import the default styling. Check the [CSS styling section](./css-styling.mdx) for more information.
+
+:::
+
+```javascript
+import 'reactjs-popup/dist/index.css';
+```
+
+## Control Popup
+
+If you need to have more control over your component, we provide function as a child pattern to get access to close popup action.
+
+```jsx
+const PopupExample = () => (
+  <Popup trigger={<button>Trigger</button>} position="top left">
+    {close => (
+      <div>
+        Content here
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
+```
+
+## Custom Root
+
+Starting from v2 you can customize where the popup is rendered on the page!
+
+By default a div with id `popup-root` is appended to the very end of the `body` tag and the popup content is rendered inside, but if an element with this id already exists, this will be used instead.
+
+This can be helpful when you need your popup to render inside of React's root element.
+
+```jsx
+const PopupExample = () => (
+  <Popup trigger={<button>Trigger</button>} position="top left">
+    {close => (
+      <div>
+        Content here
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
+
+const App = () => (
+  <div>
+    <PopupExample />
+    <div id="popup-root" />
+  </div>
+);
+```
+
+> More examples in [Guides Section](./tooltip-examples.mdx)

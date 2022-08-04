@@ -95,6 +95,6 @@
   "homepage": "https://react-popup.elazizi.com/",
   "repository": "tblbuildings/reactjs-popup",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry":"https://npm.pkg.github.com"
   }
 }
