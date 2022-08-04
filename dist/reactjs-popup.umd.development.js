@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom'], factory) :
-  (global = global || self, factory(global['reactjs-popup'] = {}, global.React, global.ReactDOM));
+  (global = global || self, factory(global['@tblbuildings/reactjs-popup'] = {}, global.React, global.ReactDOM));
 }(this, (function (exports, React, ReactDOM) { 'use strict';
 
   var React__default = 'default' in React ? React['default'] : React;

@@ -1,5 +1,5 @@
 {
-  "name": "reactjs-popup",
+  "name": "@tblbuildings/reactjs-popup",
   "version": "2.0.5",
   "description": "React Popup Component - Modals,Tooltips and Menus —  All in one",
   "main": "dist/index.js",
@@ -93,7 +93,7 @@
     "react-tooltip"
   ],
   "homepage": "https://react-popup.elazizi.com/",
-  "repository": "yjose/reactjs-popup",
+  "repository": "tblbuildings/reactjs-popup",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
