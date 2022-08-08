@@ -23,12 +23,13 @@ import calculatePosition from './Utils';
 let popupIdCounter = 0;
 
 const getRootPopup = (rootId: string | undefined) => {
-  const id = rootId || 'popup-root';
-  let PopupRoot = document.getElementById(id);
+  let PopupRoot =
+    (rootId && document.getElementById(rootId)) ||
+    document.getElementById('popup-root');
 
   if (PopupRoot === null) {
     PopupRoot = document.createElement('div');
-    PopupRoot.setAttribute('id', id);
+    PopupRoot.setAttribute('id', 'popup-root');
     document.body.appendChild(PopupRoot);
   }
 
@@ -191,7 +192,7 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
       const rootElement = rootId ? document.getElementById(rootId) : null;
       const rootRect = rootElement?.getBoundingClientRect();
 
-      let { yScroll, xScroll } = rootId
+      let { yScroll, xScroll } = rootElement
         ? {
             yScroll: rootElement?.scrollTop ?? 0,
             xScroll: rootElement?.scrollLeft ?? 0,
