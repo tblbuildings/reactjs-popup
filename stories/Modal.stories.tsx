@@ -99,6 +99,24 @@ MultipleModalAccessibility.args = {
 
 const NestedModalTemplate: Story<PopupProps> = args => (
   <Center>
+    <Popup
+      trigger={<Button>Menu</Button>}
+      on="click"
+      contentStyle={{ padding: '0px', border: 'none' }}
+      arrow={false}
+      rootId="customId"
+    >
+      <div className="menu">
+        <div className="menu-item"> item 1</div>
+        <div className="menu-item"> item 2</div>
+        <div className="menu-item"> item 3</div>
+        <div className="menu-item"> item 3</div>
+        <div className="menu-item"> item 3</div>
+        <div className="menu-item"> item 3</div>
+        <div className="menu-item"> item 3</div>
+      </div>
+    </Popup>
+
     <Popup {...args} nested>
       <div id="customId" style={{ maxHeight: 200, overflow: 'auto' }}>
         <Popup

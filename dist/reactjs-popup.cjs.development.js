@@ -330,12 +330,11 @@ var calculatePosition = function calculatePosition(triggerBounding, ContentBound
 var popupIdCounter = 0;
 
 var getRootPopup = function getRootPopup(rootId) {
-  var id = rootId || 'popup-root';
-  var PopupRoot = document.getElementById(id);
+  var PopupRoot = rootId && document.getElementById(rootId) || document.getElementById('popup-root');
 
   if (PopupRoot === null) {
     PopupRoot = document.createElement('div');
-    PopupRoot.setAttribute('id', id);
+    PopupRoot.setAttribute('id', 'popup-root');
     document.body.appendChild(PopupRoot);
   }
 
@@ -521,7 +520,7 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
     var rootElement = rootId ? document.getElementById(rootId) : null;
     var rootRect = rootElement === null || rootElement === void 0 ? void 0 : rootElement.getBoundingClientRect();
 
-    var _ref2 = rootId ? {
+    var _ref2 = rootElement ? {
       yScroll: (_rootElement$scrollTo = rootElement === null || rootElement === void 0 ? void 0 : rootElement.scrollTop) !== null && _rootElement$scrollTo !== void 0 ? _rootElement$scrollTo : 0,
       xScroll: (_rootElement$scrollLe = rootElement === null || rootElement === void 0 ? void 0 : rootElement.scrollLeft) !== null && _rootElement$scrollLe !== void 0 ? _rootElement$scrollLe : 0
     } : {
