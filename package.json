@@ -17,7 +17,6 @@
     "build": "NODE_ENV=production tsdx build --entry src/index.tsx  --format=cjs,esm,umd",
     "test": "tsdx test --passWithNoTests --env=jest-environment-jsdom-sixteen",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "np": "np --any-branch"
