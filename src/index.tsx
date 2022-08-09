@@ -282,6 +282,9 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
         style: {
           ...popupContentStyle,
           ...contentStyle,
+          ...(!isModal && {
+            minWidth: triggerRef.current?.getBoundingClientRect()?.width ?? 0,
+          }),
           pointerEvents: 'auto', //closeOnDocumentClick && nested ? 'auto' : 'none',
         },
         ref: contentRef,

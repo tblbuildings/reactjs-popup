@@ -106,14 +106,10 @@ const NestedModalTemplate: Story<PopupProps> = args => (
       arrow={false}
       rootId="customId"
     >
-      <div className="menu">
-        <div className="menu-item"> item 1</div>
-        <div className="menu-item"> item 2</div>
-        <div className="menu-item"> item 3</div>
-        <div className="menu-item"> item 3</div>
-        <div className="menu-item"> item 3</div>
-        <div className="menu-item"> item 3</div>
-        <div className="menu-item"> item 3</div>
+      <div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </div>
     </Popup>
 

@@ -591,12 +591,16 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
   };
 
   var addWarperAction = function addWarperAction() {
+    var _triggerRef$current$g, _triggerRef$current, _triggerRef$current$g2;
+
     var popupContentStyle = isModal ? Style.popupContent.modal : Style.popupContent.tooltip;
     var childrenElementProps = {
       className: "popup-content " + (className !== '' ? className.split(' ').map(function (c) {
         return c + "-content";
       }).join(' ') : ''),
-      style: _extends({}, popupContentStyle, contentStyle, {
+      style: _extends({}, popupContentStyle, contentStyle, !isModal && {
+        minWidth: (_triggerRef$current$g = (_triggerRef$current = triggerRef.current) === null || _triggerRef$current === void 0 ? void 0 : (_triggerRef$current$g2 = _triggerRef$current.getBoundingClientRect()) === null || _triggerRef$current$g2 === void 0 ? void 0 : _triggerRef$current$g2.width) !== null && _triggerRef$current$g !== void 0 ? _triggerRef$current$g : 0
+      }, {
         pointerEvents: 'auto'
       }),
       ref: contentRef,
