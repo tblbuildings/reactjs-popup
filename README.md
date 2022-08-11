@@ -1,3 +1,7 @@
+# This is a fork for internal needs
+
+After CI build pass run next command in FE repo `npm i github:tblbuildings/reactjs-popup#gh-pages --save`
+
 # Reactjs-popup
 
 [![Build Status][build-badge]][build]
