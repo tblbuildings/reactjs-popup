@@ -386,7 +386,8 @@ var Popup = /*#__PURE__*/forwardRef(function (_ref, ref) {
       _ref$disableFocusCont = _ref.disableFocusContentOnOpen,
       disableFocusContentOnOpen = _ref$disableFocusCont === void 0 ? false : _ref$disableFocusCont,
       rootId = _ref.rootId,
-      children = _ref.children;
+      children = _ref.children,
+      automaticallyDefineMinWidth = _ref.automaticallyDefineMinWidth;
 
   var _useState = useState(open || defaultOpen),
       isOpen = _useState[0],
@@ -591,7 +592,7 @@ var Popup = /*#__PURE__*/forwardRef(function (_ref, ref) {
       className: "popup-content " + (className !== '' ? className.split(' ').map(function (c) {
         return c + "-content";
       }).join(' ') : ''),
-      style: _extends({}, popupContentStyle, contentStyle, !isModal && {
+      style: _extends({}, popupContentStyle, contentStyle, automaticallyDefineMinWidth && {
         minWidth: (_triggerRef$current$g = (_triggerRef$current = triggerRef.current) === null || _triggerRef$current === void 0 ? void 0 : (_triggerRef$current$g2 = _triggerRef$current.getBoundingClientRect()) === null || _triggerRef$current$g2 === void 0 ? void 0 : _triggerRef$current$g2.width) !== null && _triggerRef$current$g !== void 0 ? _triggerRef$current$g : 0
       }, {
         pointerEvents: 'auto'

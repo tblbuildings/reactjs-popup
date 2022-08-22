@@ -66,6 +66,7 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
       disableFocusContentOnOpen = false,
       rootId,
       children,
+      automaticallyDefineMinWidth,
     },
     ref
   ) => {
@@ -282,7 +283,7 @@ export const Popup = forwardRef<PopupActions, PopupProps>(
         style: {
           ...popupContentStyle,
           ...contentStyle,
-          ...(!isModal && {
+          ...(automaticallyDefineMinWidth && {
             minWidth: triggerRef.current?.getBoundingClientRect()?.width ?? 0,
           }),
           pointerEvents: 'auto', //closeOnDocumentClick && nested ? 'auto' : 'none',

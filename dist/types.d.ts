@@ -38,4 +38,5 @@ export interface PopupProps {
      * Also Popup itself will be placed inside of that root
      */
     rootId?: string;
+    automaticallyDefineMinWidth?: boolean;
 }
